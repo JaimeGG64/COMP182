@@ -27,8 +27,9 @@ public class Driver{
         //Get Min and max from user
         System.out.println("Enter a minimum");
         getMinValue = getUserInput.nextInt();
+        
+        System.out.println("Enter a maximum");
         do{
-            System.out.println("Enter a maximum");
             getMaxValue = getUserInput.nextInt();
             if(getMaxValue < getMinValue){
                 System.out.println("Number must be greater than " + getMinValue);
