@@ -1,3 +1,5 @@
+//Program: Number
+
 import java.util.Scanner;
 public class Driver{
     public static void main(String[] args) {
@@ -6,7 +8,6 @@ public class Driver{
         int countSwaps = 0;
         int countComps = 0;
 
-        //set user inputs
         Scanner getUserInput = new Scanner(System.in);
         int getAmountOfNumberToBeGenerated;
         int getMinValue;
@@ -92,7 +93,7 @@ public class Driver{
                 }
             }
         }
-        numberOfComparison = (lenghtOfArray *( lenghtOfArray + 1)) / 2;
+        numberOfComparison = (lenghtOfArray *( lenghtOfArray - 1)) / 2;
         System.out.println("Number of swaps " + numberOfSwaps);
         System.out.println("Number of comparisons " + numberOfComparison);
         return arrayToBeSorted;
@@ -105,11 +106,11 @@ public class Driver{
                     int temporaryLargeNumber = arrayToBeSorted[j];
                     arrayToBeSorted[j] = arrayToBeSorted[j + 1];
                     arrayToBeSorted[j + 1] = temporaryLargeNumber;
-                    numberOfSwaps++;
+                    numberOfSwaps ++;
                 }
             }
         }
-        numberOfComparison = (lenghtOfArray *( lenghtOfArray + 1)) / 2;
+        numberOfComparison = (lenghtOfArray *( lenghtOfArray - 1)) / 2;
         System.out.println("Number of swaps " + numberOfSwaps);
         System.out.println("Number of comparisons " + numberOfComparison);
         return arrayToBeSorted;
