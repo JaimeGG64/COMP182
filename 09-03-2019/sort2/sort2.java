@@ -13,6 +13,7 @@
 
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class sort2 {
 	public static void prt(String s) {
@@ -31,9 +32,10 @@ public class sort2 {
 	// print arr, k numbers per line
 	private void printarr(double arr[], int n, int k) {
 		int j = 0;
+		DecimalFormat formatDec = new DecimalFormat("0.00");
 		try{
 			for (double i : arr) {
-				prt(i + " ");
+				prt(formatDec.format(i) + " ");
 				j++;
 				if (j % k == 0)
 					prt("\n");

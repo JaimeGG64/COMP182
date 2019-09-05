@@ -9,7 +9,7 @@
 //   prints sorted, k numbers per line
 //   Author : Dr. Gh. Dastghaibyfard
 //
-// Name:
+// Name: Jaime Garcia
 
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -83,7 +83,7 @@ public class sort1 {
 					prt("\n");
 			}
 		} catch (Exception e) {
-			System.out.println("Can't Generate Numbers");
+			System.out.print("Cannot print numbers");
 		}
 	}
 
