@@ -22,36 +22,40 @@ public class sort1 {
 		a = 0;
 		b = 0;
 		k = 0;
-		Scanner getUserInput = new Scanner(new InputStreamReader(System.in));
-
-		System.out.println("The number of integers you want generated");
-		do {
-			n = getUserInput.nextInt();
-			if (n < 50) {
-				System.out.println("Must be greater than " + Integer.toString(50));
-			}
-		} while (n < 50);
-
-		System.out.println("Enter a minimum");
-		a = getUserInput.nextInt();
-
-		System.out.println("Enter a maximum");
-		do {
-			b = getUserInput.nextInt();
-			if (a > b) {
-				System.out.println("Number must be greater than " + Integer.toString(a));
-			}
-		} while (a > b);
-
-		System.out.println("How many integers do you want per line");
-		do {
-			k = getUserInput.nextInt();
-			if (n < 0) {
-				System.out.println("Must be greater than " + Integer.toString(0));
-			}
-		} while (n < 0);
-
-		getUserInput.close();
+		try{
+			Scanner getUserInput = new Scanner(new InputStreamReader(System.in));
+	
+			System.out.println("The number of integers you want generated");
+			do {
+				n = getUserInput.nextInt();
+				if (n < 50) {
+					System.out.println("Must be greater than " + Integer.toString(50));
+				}
+			} while (n < 50);
+	
+			System.out.println("Enter a minimum");
+			a = getUserInput.nextInt();
+	
+			System.out.println("Enter a maximum");
+			do {
+				b = getUserInput.nextInt();
+				if (a > b) {
+					System.out.println("Number must be greater than " + Integer.toString(a));
+				}
+			} while (a > b);
+	
+			System.out.println("How many integers do you want per line");
+			do {
+				k = getUserInput.nextInt();
+				if (n < 0) {
+					System.out.println("Must be greater than " + Integer.toString(0));
+				}
+			} while (n < 0);
+			getUserInput.close();
+		}
+		catch(Exception e){
+			System.out.print("Invalid Input");
+		}
 		arr = new int[n];
 	}
 
@@ -70,12 +74,16 @@ public class sort1 {
 
 	// print arr, k numbers per line
 	private void printarr() {
-		int j = 0;
-		for (int i : arr) {
-			prt(i + " ");
-			j++;
-			if (j % k == 0)
-				prt("\n");
+		try {
+			int j = 0;
+			for (int i : arr) {
+				prt(i + " ");
+				j++;
+				if (j % k == 0)
+					prt("\n");
+			}
+		} catch (Exception e) {
+			System.out.println("Can't Generate Numbers");
 		}
 	}
 
