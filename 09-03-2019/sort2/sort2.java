@@ -53,7 +53,11 @@ public class sort2 {
 		int comps = n * (n - 1) / 2;
 		for (int i = 1; i < n; i++)
 			for (int j = 0; j < n - i; j++)
-				if (arr[j] > arr[j + 1]) {
+				if(arr[j] < arr[j + 1] && j == 1){
+					System.out.print('\n');
+					System.exit(0);
+				}
+				else if (arr[j] > arr[j + 1]) {
 					double tmp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = tmp;
