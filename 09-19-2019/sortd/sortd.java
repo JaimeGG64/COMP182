@@ -11,7 +11,7 @@ import java.util.*;
 //   prints array arr, k numbers per line after  sorting
 //   Author : Dr. Gh. Dastghaibyfard
 //   To compile:  javac sortd.java
-//   To excecute: java sort < inputfile name
+//   To excecute: java sortd < inputfile name
 //   Name:
 public class sortd {
 	public static void prt(String s) {
@@ -22,7 +22,7 @@ public class sortd {
 	private void printarr(double arr[], int n, int k) {
 		int j = 0;
 		for (double i : arr) {
-			System.out.printf("%.2f ", i);
+			System.out.printf("%.3f ", i);
 			j++;
 			if (j % k == 0)
 				prt("\n");

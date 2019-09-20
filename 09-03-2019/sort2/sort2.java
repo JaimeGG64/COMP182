@@ -33,15 +33,14 @@ public class sort2 {
 	private void printarr(double arr[], int n, int k) {
 		int j = 0;
 		DecimalFormat formatDec = new DecimalFormat("0.00");
-		try{
+		try {
 			for (double i : arr) {
 				prt(formatDec.format(i) + " ");
 				j++;
 				if (j % k == 0)
 					prt("\n");
 			}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.print("Cannot print numbers");
 		}
 	}
@@ -49,63 +48,72 @@ public class sort2 {
 	// sort arr using bubble sort, compute number of
 	// comparison and swaps and print sorted array
 	private void bubblesort(double arr[], int n, int k) {
-		int swaps = 0;
-		int comps = n * (n - 1) / 2;
-		for (int i = 1; i < n; i++)
-			for (int j = 0; j < n - i; j++)
-				if(arr[j] < arr[j + 1] && j == 1){
-					System.out.print('\n');
-					System.exit(0);
-				}
-				else if (arr[j] > arr[j + 1]) {
+		// int comps = n * (n - 1) / 2;
+		int i, swaps, ToSwap = 0, comps = 0;
+		for (i = 0; i < n; i++) {
+			arr[i] = i * 2.0;
+		}
+		for (i = 1; i < n; i++) {
+			swaps = 0;
+			for (int j = 0; j < n - i; j++) {
+				comps++;
+				if (arr[j] > arr[j + 1]) {
 					double tmp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = tmp;
 					swaps++;
 				}
+				ToSwap += swaps;
+				if (swaps == 0) {
+					break;
+				}
+			}
+		}
+		prt("\n");
+		prt("\n     No. of swaps " + ToSwap);
 		prt("\n        Input after sorting...\n");
-		printarr(arr, n, k);
 		prt("\n    No. of comparisons = " + comps);
-		prt("\n    No. of       swaps = " + swaps + "\n");
+		printarr(arr, n, k);
+		// prt("\n No. of swaps = " + swaps + "\n");
 	}
 
 	public static void main(String[] args) throws Exception {
 		sort2 bb = new sort2();
-		int n = 0, k = 0;
-		double a = 0, b = 0;
-		try {
-			Scanner getUserInput = new Scanner(new InputStreamReader(System.in));
-			System.out.println("The number of integers you want generated");
-			do {
-				n = getUserInput.nextInt();
-				if (n < 50) {
-					System.out.println("Must be greater than " + Integer.toString(50));
-				}
-			} while (n < 50);
-			System.out.println("Enter a minimum");
-			a = getUserInput.nextDouble();
+		int n = 15, k = 5;
+		double a = 20, b = 80;
+		// try {
+		// Scanner getUserInput = new Scanner(new InputStreamReader(System.in));
+		// System.out.println("The number of integers you want generated");
+		// do {
+		// n = getUserInput.nextInt();
+		// if (n < 50) {
+		// System.out.println("Must be greater than " + Integer.toString(50));
+		// }
+		// } while (n < 50);
+		// System.out.println("Enter a minimum");
+		// a = getUserInput.nextDouble();
 
-			System.out.println("Enter a maximum");
-			do {
-				b = getUserInput.nextDouble();
-				if (a > b) {
-					System.out.println("Number must be greater than " + Double.toString(a));
-				}
-			} while (a > b);
+		// System.out.println("Enter a maximum");
+		// do {
+		// b = getUserInput.nextDouble();
+		// if (a > b) {
+		// System.out.println("Number must be greater than " + Double.toString(a));
+		// }
+		// } while (a > b);
 
-			System.out.println("How many integers do you want per line");
-			do {
-				k = getUserInput.nextInt();
-				if (n < 0) {
-					System.out.println("Must be greater than " + Double.toString(0));
-				}
-			} while (n < 0);
+		// System.out.println("How many integers do you want per line");
+		// do {
+		// k = getUserInput.nextInt();
+		// if (n < 0) {
+		// System.out.println("Must be greater than " + Double.toString(0));
+		// }
+		// } while (n < 0);
 
-			getUserInput.close();
-		} 
-		catch (Exception e) {
-			System.out.println("You broke the program.");
-		}
+		// getUserInput.close();
+		// }
+		// catch (Exception e) {
+		// System.out.println("You broke the program.");
+		// }
 		double arr[] = new double[n];
 		bb.genarr(arr, n, a, b, k);// generate and print
 		bb.bubblesort(arr, n, k); // sort and print
