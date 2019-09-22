@@ -1,35 +1,35 @@
 import java.util.Scanner;
 
 public class p1 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int j, n, m, k, x;
         try{
-            Scanner inf = new Scanner(System.in);
+            Scanner inf = new Scanner(System.in);                 
             n = inf.nextInt();// read No. of data to read
 
             // Create a List of type Integer of size n
-            listarr<Integer> listarr2 = new listarr<Integer>(n);
-            
+            listarr<Integer> Lint = new listarr<Integer>(n);
+
             // Read n element and insert in a sorted listposition randomly in the list
             for(j = 1; j <= n; j++){
                 x = inf.nextInt(); // read element
-                listarr2.insertsorted(x,j);
+                Lint.insertsorted (x);
             }
-            System.out.print(listarr2.toString());
+
             System.out.printf("The %d inserted data are as follow:", n);
-            // System.out.print(listarr.toString());
+            System.out.print(Lint.toString());
+
             // read No. of data to search
-            m = inf.nextInt();
+            m = inf.nextInt(); 
+
             for(j = 1; j <= m; j++){
                 x = inf.nextInt(); // read data to search
-                // k = Lint.binsearch(x);
-                // if(k){
-
-                // }
-                inf.close();
-            } 
+                k = Lint.binsearch(x);
+                /*if(k???){}*/ //complete it
+            }
+            inf.close();
         }
-        catch (Exception e) {
+        catch(Exception e){
             prt("Exception " + e + "\n");
         }
     }// end main method
