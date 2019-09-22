@@ -64,14 +64,19 @@ public class listarr<T> implements list<T> {
 
 	public String toString() {
 		String s = "[";
-		for (int i = 1; i <= last; i++)
-			s += ", " + arr[i];
+		for (int i = 1; i < arr.length; i++){
+			if(i == 1){
+				s += arr[i];
+			}
+			else{
+				s += ", " + arr[i];
+			}
+		}
 		return s + "]";
 	}
 
 	public void insertsorted(T x, int index) {
 		arr[index] = x;
-		System.out.print(arr[index] + " ");
 	}
 
 	public static void main(String args[]) {
