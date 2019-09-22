@@ -20,7 +20,7 @@ public class listarr<T> implements list<T> {
 		capacity = n;
 		// Allocate Space
 		arr = (T[]) new Object[n + 1];
-		prt("\n List size = " + n);
+		prt("List size = " + n + "\n");
 	}
 
 	public boolean isEmpty() {
@@ -67,6 +67,11 @@ public class listarr<T> implements list<T> {
 		for (int i = 1; i <= last; i++)
 			s += ", " + arr[i];
 		return s + "]";
+	}
+
+	public void insertsorted(T x, int index) {
+		arr[index] = x;
+		System.out.print(arr[index] + " ");
 	}
 
 	public static void main(String args[]) {

@@ -34,4 +34,6 @@ public interface list<T> {
    * @return a String representation of this List.
    */
   public String toString();
+
+  public void insertsorted(T X, int index);
 } // end List
