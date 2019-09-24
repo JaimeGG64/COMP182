@@ -76,21 +76,17 @@ public class listarr<T> implements list<T> {
 	}
 
 	public void insertsorted(int x) {
+		int i;
 		if(last == 0){
 			arr[1] = x;
 			last++;
+			return;
 		}
-		if(arr[1] < x){
-			arr[last + 1] = x;
-			last++;
+		for(i = last; i >= 1 && arr[i] > x; i--){
+			arr[i + 1] =  arr[i];
 		}
-		// if(last >= 1 && arr[last] > x){
-			
-		// }
-		// for(int i = last; i >= 1 && arr[last] > x; i--){
-		// 	arr[i + 1] = x;
-		// 	last++;
-		// }
+		arr[i + 1] = x;
+		last++;
 		System.out.printf("\nInsert %d in a sorted list", x);
 	}
 
