@@ -13,13 +13,13 @@ import java.util.*;
 public class listarr<T> implements list<T> {
 	// class Variables
 	protected int capacity, last;
-	protected T arr[];
+	protected int arr[];
 
 	listarr(int n) { // List Constructor
 		last = 0;
 		capacity = n;
 		// Allocate Space
-		arr = (T[]) new Object[n + 1];
+		arr = new int[n + 1];
 		prt("List size = " + n + "\n");
 	}
 
@@ -40,7 +40,7 @@ public class listarr<T> implements list<T> {
 	}
 
 	// insert x at position p (valid p's 1 <= p <= last+1 && last != capacity)
-	public void insert(T x, int p) throws invalidinsertion {
+	public void insert(int x, int p) throws invalidinsertion {
 		prt("\nInsert " + x + " at position " + p);
 		if (isFull() || p < 1 || p > last + 1)
 			throw new invalidinsertion(p);
@@ -72,11 +72,32 @@ public class listarr<T> implements list<T> {
 				s += ", " + arr[i];
 			}
 		}
-		return s + "]";
+		return s + "]\n";
 	}
 
-	public void insertsorted(T x, int index) {
-		arr[index] = x;
+	public void insertsorted(int x) {
+		if(last == 0){
+			arr[1] = x;
+			last++;
+		}
+		if(arr[1] < x){
+			arr[last + 1] = x;
+			last++;
+		}
+		// if(last >= 1 && arr[last] > x){
+			
+		// }
+		// for(int i = last; i >= 1 && arr[last] > x; i--){
+		// 	arr[i + 1] = x;
+		// 	last++;
+		// }
+		System.out.printf("\nInsert %d in a sorted list", x);
+	}
+
+	public int binsearch(int x) {
+		int mid = 0; // Assume x is not fornd
+		System.out.printf("\nbinary search for %d in a sorted list", x);
+		return mid;
 	}
 
 	public static void main(String args[]) {
@@ -112,17 +133,5 @@ public class listarr<T> implements list<T> {
 				prt("Exception " + e + "\n");
 			}
 		}
-
-		// Create a List of type String
-		n = rand.nextInt(MaxNum) + 1; // generate n randomly
-		listarr<String> Lstr = new listarr<String>(n);
-		try {
-			Lstr.insert("Sarah", 1);
-			Lstr.insert("Jerry", 1);
-			Lstr.insert("Tom", 2);
-		} catch (Exception e) {
-			prt("Exception " + e + "\n");
-		}
-		prt("\nList: " + Lstr.toString() + "\n");
 	}
 }// end class listarr

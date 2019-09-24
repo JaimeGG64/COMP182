@@ -15,7 +15,7 @@ public class p1 {
             for(j = 1; j <= n; j++){
                 // read element
                 x = inf.nextInt();
-                Lint.insertsorted(x,j);
+                Lint.insertsorted(x);
             }
             System.out.printf("The %d inserted data are as follow:", n);
             System.out.print(Lint.toString());
