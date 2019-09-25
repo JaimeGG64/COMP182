@@ -92,15 +92,23 @@ public class listarr<T> implements list<T> {
 	}
 
 	public int binsearch(int x) {
-		int mid = 0; // Assume x is not fornd
+		int mid = 0;
 		System.out.printf("binary search for %d in a sorted list\n", x);
-		int m = arr.length;
-		int p = m/2;
-		if(arr[p] == x){
-			return 1;
-		}
-		else{
-			return 0;
-		}
+		int l = 0, r = arr.length - 1; 
+        while (l <= r) { 
+            int m = l + (r - l) / 2; 
+            // Check if x is present at mid 
+            if (arr[m] == x) 
+                return 1; 
+            // If x greater, ignore left half 
+            if (arr[m] < x) 
+                l = m + 1; 
+            // If x is smaller, ignore right half 
+            else
+                r = m - 1; 
+        } 
+        // if we reach here, then element was 
+        // not present 
+        return 0; 
 	}
 }// end class listarr
