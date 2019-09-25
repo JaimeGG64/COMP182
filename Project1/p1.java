@@ -25,9 +25,14 @@ public class p1 {
 
             for(j = 1; j <= m; j++){
                 // read data to search
-                x = inf.nextInt(); 
-                // k = Lint.binsearch(x);
-                /*if(k???){}*/ //complete it
+                x = inf.nextInt();
+                k = Lint.binsearch(x);
+                if(k == 1){
+                    System.out.print(x + " Found\n");
+                } //complete it
+                else{
+                    System.out.print(x + " Not\n");
+                }
             }
             inf.close();
         }

@@ -80,6 +80,7 @@ public class listarr<T> implements list<T> {
 		if(last == 0){
 			arr[1] = x;
 			last++;
+			System.out.printf("\nInsert %d in a sorted list\n", x);
 			return;
 		}
 		for(i = last; i >= 1 && arr[i] > x; i--){
@@ -87,47 +88,19 @@ public class listarr<T> implements list<T> {
 		}
 		arr[i + 1] = x;
 		last++;
-		System.out.printf("\nInsert %d in a sorted list", x);
+		System.out.printf("Insert %d in a sorted list\n", x);
 	}
 
 	public int binsearch(int x) {
 		int mid = 0; // Assume x is not fornd
-		System.out.printf("\nbinary search for %d in a sorted list", x);
-		return mid;
-	}
-
-	public static void main(String args[]) {
-		int j, p, n, x, MaxNum = 5;
-		Random rand = new Random();
-
-		n = rand.nextInt(MaxNum) + 1; // generate n randomly
-
-		// Create a List of type Integer of size n
-		listarr<Integer> Lint = new listarr<Integer>(n);
-
-		// Generate n element and position randomly and insert in the list
-		for (j = 1; j <= n; j++) {
-			p = rand.nextInt(n); // generate position
-			x = rand.nextInt(MaxNum * 4); // generate element
-
-			try {
-				Lint.insert(x, p);
-			} catch (Exception e) {
-				prt("Exception " + e + "\n");
-			}
+		System.out.printf("binary search for %d in a sorted list\n", x);
+		int m = arr.length;
+		int p = m/2;
+		if(arr[p] == x){
+			return 1;
 		}
-
-		prt("\nList: " + Lint.toString() + "\n"); // print list
-
-		// Delete n element from list randomly and print list
-		for (j = 1; j <= n; j++) {
-			p = rand.nextInt(n); // generate position to delete
-			try {
-				Lint.delete(p);
-				prt("\nList: " + Lint.toString() + "\n");
-			} catch (Exception e) {
-				prt("Exception " + e + "\n");
-			}
+		else{
+			return 0;
 		}
 	}
 }// end class listarr
