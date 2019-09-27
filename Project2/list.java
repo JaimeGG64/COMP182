@@ -28,4 +28,6 @@ public interface list{
    *  @return a String representation of this List.
    */
   public String toString();
+
+  public void insertsorted(int x);
 } // end List

@@ -4,82 +4,69 @@
 import java.util.*;
 //*************  Class Definition *************
 /**
-  * Implementation of the  ADT List using a fixed-length array.
-  * Exception is thrown:
-  *     if insert operation is attempted when List is full.
-  *     if delete operation is attempted when List is empty.
-  *     if position of insert or delete is out of range.
-  */
-	public class listarr implements list{
-		// class Variables
-		protected int capacity, last; 
-		protected int arr[]; 	
+	* Implementation of the  ADT List using a fixed-length array.
+	* Exception is thrown:
+	* if insert operation is attempted when List is full.
+	* if delete operation is attempted when List is empty.
+	* if position of insert or delete is out of range.
+*/
+public class listarr implements list{
+	// class Variables
+	protected int capacity, last; 
+	protected int arr[]; 	
 
-		listarr(int n){  // List Constructor 
-			last = 0; 
-			capacity =  n; 
-			//Allocate Space		 	 
-			arr = new int[n+1];
-			prt("\n List size = " + n);
+	listarr(int n){  // List Constructor 
+		last = 0; 
+		capacity =  n; 
+		//Allocate Space		 	 
+		arr = new int[n+1];
+		prt("\n List size = " + n);
+	}
+
+	public boolean isEmpty(){return (last == 0);}
+	public int	   length(){return last;}
+	public boolean isFull() {return (last == capacity);}
+	public static void prt(String s){System.out.print(s);}
+
+	// insert x at position p (valid p's 1 <= p <= last+1 && last != capacity)	  	
+	public void insert(int x,  int p) throws invalidinsertion {
+		prt("\nInsert " + x + " at position " + p);
+		if (isFull() || p < 1 || p > last + 1)throw new invalidinsertion(p);
+		//  Shift from position p to right
+		for (int i = last ; i >= p ; i--)  arr[i+1] = arr[i];
+		arr[p] = x; last++;
+	}
+
+	// delete element at position p (1...last)	  	
+	public void delete(int p)throws invaliddeletion {
+		prt("\nDelete " + p + "th element, ");
+		if ( isEmpty() || p < 1 || p > last) throw new invaliddeletion(p);
+		// Shift from position p + 1 to left
+		for (int i = p ; i < last ; i++)  arr[i] = arr[i+1];
+		last --;
+	}
+
+	public String toString() {
+		String s  = "[" + arr[1];
+		for (int i = 2; i <= last; i++){
+			s +=  ", " + arr[i];
 		}
+		return s + "]";
+	}
 
-		public boolean isEmpty(){return (last == 0);}
-		public int	   length(){return last;}
-		public boolean isFull() {return (last == capacity);}
-		public static void prt(String s){System.out.print(s);}
-
-		// insert x at position p (valid p's 1 <= p <= last+1 && last != capacity)	  	
-		public void insert(int x,  int p) throws invalidinsertion {
-			prt("\nInsert " + x + " at position " + p);
-			if (isFull() || p < 1 || p > last + 1)throw new invalidinsertion(p);
-			//  Shift from position p to right
-			for (int i = last ; i >= p ; i--)  arr[i+1] = arr[i];
-			arr[p] = x; last++;
+	public void insertsorted(int x) {
+		int i;
+		if(last == 0){
+			arr[1] = x;
+			last++;
+			System.out.printf("\nInsert %d in a sorted list\n", x);
+			return;
 		}
-
-		// delete element at position p (1...last)	  	
-		public void delete(int p)throws invaliddeletion {
-			prt("\nDelete " + p + "th element, ");
-			if ( isEmpty() || p < 1 || p > last) throw new invaliddeletion(p);
-			// Shift from position p + 1 to left
-			for (int i = p ; i < last ; i++)  arr[i] = arr[i+1];
-			last --;
+		for(i = last; i >= 1 && arr[i] > x; i--){
+			arr[i + 1] =  arr[i];
 		}
-
-		public String toString() {
-			String s  = "[";
-			for (int i = 1; i <= last; i++) s +=  ", " + arr[i] ;
-            return s + "]";
-		} 		
-
-		public static void main(String args[]) {
-			int j, p, n, x, MaxNum = 5;
-			Random rand = new Random();
-
-			n = rand.nextInt(MaxNum) + 1;	// generate n randomly		
-
-			// Create a List of type Integer of size n
-			listarr Lint = new listarr(n);			
-
-			// Generate n element and position randomly and insert in the list
-			for(j = 1; j <= n; j++){
-				p = rand.nextInt(n); // generate position
-				x = rand.nextInt(MaxNum * 4); // generate element
-
-				try {
-					Lint.insert(x,p);
-				} catch (Exception e) {prt("Exception " + e + "\n");}
-			}			
-
-			prt("\nList: " + Lint.toString() + "\n");       // print list			
-
-			//  Delete n element from list randomly and print list
-			for(j = 1; j <= n; j++){
-				p = rand.nextInt(n); // generate position to delete
-				try {
-					Lint.delete(p);
-					prt("\nList: " + Lint.toString() + "\n"); 
-				} catch (Exception e) {prt("Exception " + e + "\n");}
-			}
-		}
-	}// end class listarr
+		arr[i + 1] = x;
+		last++;
+		System.out.printf("Insert %d in a sorted list\n", x);
+	}
+}// end class listarr
