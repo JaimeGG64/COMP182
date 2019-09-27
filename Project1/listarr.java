@@ -13,14 +13,14 @@ import java.util.*;
 public class listarr<T> implements list<T> {
 	// class Variables
 	protected int capacity, last;
-	protected T arr[];
+	protected int arr[];
 
 	listarr(int n) { // List Constructor
 		last = 0;
 		capacity = n;
 		// Allocate Space
-		arr = (T[]) new Object[n + 1];
-		prt("\n List size = " + n);
+		arr = new int[n + 1];
+		prt("List size = " + n + "\n");
 	}
 
 	public boolean isEmpty() {
@@ -40,7 +40,7 @@ public class listarr<T> implements list<T> {
 	}
 
 	// insert x at position p (valid p's 1 <= p <= last+1 && last != capacity)
-	public void insert(T x, int p) throws invalidinsertion {
+	public void insert(int x, int p) throws invalidinsertion {
 		prt("\nInsert " + x + " at position " + p);
 		if (isFull() || p < 1 || p > last + 1)
 			throw new invalidinsertion(p);
@@ -64,55 +64,51 @@ public class listarr<T> implements list<T> {
 
 	public String toString() {
 		String s = "[";
-		for (int i = 1; i <= last; i++)
-			s += ", " + arr[i];
-		return s + "]";
+		for (int i = 1; i < arr.length; i++){
+			if(i == 1){
+				s += arr[i];
+			}
+			else{
+				s += ", " + arr[i];
+			}
+		}
+		return s + "]\n";
 	}
 
-	public static void main(String args[]) {
-		int j, p, n, x, MaxNum = 5;
-		Random rand = new Random();
-
-		n = rand.nextInt(MaxNum) + 1; // generate n randomly
-
-		// Create a List of type Integer of size n
-		listarr<Integer> Lint = new listarr<Integer>(n);
-
-		// Generate n element and position randomly and insert in the list
-		for (j = 1; j <= n; j++) {
-			p = rand.nextInt(n); // generate position
-			x = rand.nextInt(MaxNum * 4); // generate element
-
-			try {
-				Lint.insert(x, p);
-			} catch (Exception e) {
-				prt("Exception " + e + "\n");
-			}
+	public void insertsorted(int x) {
+		int i;
+		if(last == 0){
+			arr[1] = x;
+			last++;
+			System.out.printf("\nInsert %d in a sorted list\n", x);
+			return;
 		}
-
-		prt("\nList: " + Lint.toString() + "\n"); // print list
-
-		// Delete n element from list randomly and print list
-		for (j = 1; j <= n; j++) {
-			p = rand.nextInt(n); // generate position to delete
-			try {
-				Lint.delete(p);
-				prt("\nList: " + Lint.toString() + "\n");
-			} catch (Exception e) {
-				prt("Exception " + e + "\n");
-			}
+		for(i = last; i >= 1 && arr[i] > x; i--){
+			arr[i + 1] =  arr[i];
 		}
+		arr[i + 1] = x;
+		last++;
+		System.out.printf("Insert %d in a sorted list\n", x);
+	}
 
-		// Create a List of type String
-		n = rand.nextInt(MaxNum) + 1; // generate n randomly
-		listarr<String> Lstr = new listarr<String>(n);
-		try {
-			Lstr.insert("Sarah", 1);
-			Lstr.insert("Jerry", 1);
-			Lstr.insert("Tom", 2);
-		} catch (Exception e) {
-			prt("Exception " + e + "\n");
-		}
-		prt("\nList: " + Lstr.toString() + "\n");
+	public int binsearch(int x) {
+		int mid = 0;
+		System.out.printf("binary search for %d in a sorted list\n", x);
+		int l = 0, r = arr.length - 1; 
+        while (l <= r) { 
+            int m = l + (r - l) / 2; 
+            // Check if x is present at mid 
+            if (arr[m] == x) 
+                return 1; 
+            // If x greater, ignore left half 
+            if (arr[m] < x) 
+                l = m + 1; 
+            // If x is smaller, ignore right half 
+            else
+                r = m - 1; 
+        } 
+        // if we reach here, then element was 
+        // not present 
+        return 0; 
 	}
 }// end class listarr

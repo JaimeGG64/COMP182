@@ -5,17 +5,18 @@ public class p1 {
         int j, n, m, k, x;
         try{
             Scanner inf = new Scanner(System.in);                 
-            n = inf.nextInt();// read No. of data to read
+            // read No. of data to read
+            n = inf.nextInt();
 
             // Create a List of type Integer of size n
             listarr<Integer> Lint = new listarr<Integer>(n);
 
-            // Read n element and insert in a sorted listposition randomly in the list
+            // Read n element and insert in a sorted list position randomly in the list
             for(j = 1; j <= n; j++){
-                x = inf.nextInt(); // read element
-                Lint.insertsorted (x);
+                // read element
+                x = inf.nextInt();
+                Lint.insertsorted(x);
             }
-
             System.out.printf("The %d inserted data are as follow:", n);
             System.out.print(Lint.toString());
 
@@ -23,9 +24,15 @@ public class p1 {
             m = inf.nextInt(); 
 
             for(j = 1; j <= m; j++){
-                x = inf.nextInt(); // read data to search
+                // read data to search
+                x = inf.nextInt();
                 k = Lint.binsearch(x);
-                /*if(k???){}*/ //complete it
+                if(k == 1){
+                    System.out.print(x + " Found\n");
+                } //complete it
+                else{
+                    System.out.print(x + " Not\n");
+                }
             }
             inf.close();
         }
