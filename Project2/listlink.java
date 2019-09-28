@@ -27,10 +27,11 @@ public class listlink implements list{
 	public static void prt(String s){System.out.print(s);}
 
 	public String toString() {
-		String s  = "[";
-		for (Node cur = head; cur != null ; cur = cur.next)
-			s += cur.data + ", ";
-		return s + "]";
+		String s  = "";
+		for (Node cur = head; cur != null ; cur = cur.next){
+			s += ", " +  cur.data;
+		}
+		return "[" + s.substring(2) + "]";
 	}
 
 	// insert x at position p
@@ -77,7 +78,11 @@ public class listlink implements list{
 		count --; // decrement no of list elements	
 	}
 
-	public void insertsorted(int x) {
-		System.out.printf("Insert %d in a sorted list\n", x);
+	public void insertsorted(int data) {
+		Node tmp = new Node();
+		tmp.next = head;
+		tmp.data = data;
+		head = tmp;
+		System.out.printf("Insert %d in a sorted list\n", data);
 	}
 }// end class listlink	

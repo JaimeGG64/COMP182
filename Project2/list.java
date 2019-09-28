@@ -29,5 +29,5 @@ public interface list{
    */
   public String toString();
 
-  public void insertsorted(int x);
+  public void insertsorted(int data);
 } // end List

@@ -9,7 +9,7 @@ public class driver {
             n = inf.nextInt();
 
             // Create a List of type Integer of size n
-            listarr Lint = new listarr(n);
+            listlink Lint = new listlink();
 
             // Read n element and insert in a sorted list position randomly in the list
             for(j = 1; j <= n; j++){
@@ -17,7 +17,6 @@ public class driver {
                 x = inf.nextInt();
                 Lint.insertsorted(x);
             }
-            System.out.printf("The %d inserted data are as follow:", n);
             System.out.print(Lint.toString());
 
             // read No. of data to search
