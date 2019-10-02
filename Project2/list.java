@@ -17,7 +17,7 @@ public interface list<T>{
    *  insert(x, p) inserts x at position p in the List.  
    *  if p is invalid throws an exception (p > 0 && p <= length()+1).
    **/
-  public void insert(int x,  int p) throws invalidinsertion;
+  public void insert(T x,  int p) throws invalidinsertion;
   /**
    *  delete(p) deletes element at position p(p > 0 && p <= length()) in the List.
    *  if p is invalid throws an exception.
@@ -31,5 +31,5 @@ public interface list<T>{
    */
   public String toString();
 
-  public void insertsorted(int data);
+  public void insertsorted(T data);
 } // end List

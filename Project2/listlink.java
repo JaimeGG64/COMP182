@@ -13,7 +13,7 @@ import java.io.*;
 */
 public class listlink <T extends Comparable<T>> implements list<T>{
 	private class Node{
-		int data; 
+		T data; 
 		Node next;
 		Node(){next = null;}
 	}// class Node<T>
@@ -35,7 +35,7 @@ public class listlink <T extends Comparable<T>> implements list<T>{
 	}
 
 	// insert x at position p
-	public void insert(int x, int p) throws invalidinsertion {
+	public void insert(T x, int p) throws invalidinsertion {
 		prt("\nInsert " + x + " at position " + p);
 		if (p < 1 || p > length()+1) throw new invalidinsertion(p);
 
@@ -95,7 +95,7 @@ public class listlink <T extends Comparable<T>> implements list<T>{
 		return 1;
 	}
 
-	public void insertsorted(int data) {
+	public void insertsorted(T data) {
 		Node tmp = new Node();
 		tmp.next = head;
 		tmp.data = data;
