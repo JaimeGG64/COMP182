@@ -11,7 +11,7 @@ import java.io.*;
 	* if delete operation is attempted when List is empty.
 	* if position of insert or delete is out of range.
 */
-public class listlink implements list{
+public class listlink <T extends Comparable<T>> implements list<T>{
 	private class Node{
 		int data; 
 		Node next;
@@ -61,13 +61,13 @@ public class listlink implements list{
 		prt("\nDelete " + p + "th element, ");
 		if (isEmpty() || p < 1 || p > length())
 			throw new invaliddeletion(p);
-
 		Node tmp = head;
 		if (p == 1){    // Delete Front of List
 			head = head.next;
 			tmp.next = null;
 		}
-		else {//Find Node before p
+		else
+		{//Find Node before p
 			Node cur = head;
 			for (int i = 2; i < p; i ++, cur = cur.next);
 			// Delete node after cur node
@@ -75,7 +75,24 @@ public class listlink implements list{
 			cur.next = tmp.next;
 			tmp.next = null;  //	 delete tmp;
 		}
-		count --; // decrement no of list elements	
+	}
+
+	public int deleteKey(T key){
+		Node tmp = head; 
+		Node prev = null;
+		if(tmp != null && key.equals(tmp.data)){
+			head = tmp.next;
+			return 1;
+		}
+		while(tmp != null && !key.equals(tmp.data)){
+			prev = tmp;
+			tmp = tmp.next;
+		}
+		if(tmp == null){
+			return -1;
+		}
+		prev.next = tmp.next;
+		return 1;
 	}
 
 	public void insertsorted(int data) {

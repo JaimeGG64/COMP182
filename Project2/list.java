@@ -3,7 +3,7 @@
  *  A List is a mutable list ADT.  No implementation is provided.
  *  DO NOT CHANGE THIS FILE.
  **/	
-public interface list{
+public interface list<T>{
   /**
    *  isEmpty() returns true if this List is empty, false otherwise.
    **/
@@ -23,6 +23,8 @@ public interface list{
    *  if p is invalid throws an exception.
    **/
   public void delete(int p) throws invaliddeletion;
+
+  public int deleteKey(T key);
   /**
    *  toString() returns a String representation of this List.
    *  @return a String representation of this List.
