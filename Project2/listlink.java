@@ -100,6 +100,20 @@ public class listlink <T extends Comparable<T>> implements list<T>{
 		tmp.next = head;
 		tmp.data = data;
 		head = tmp;
-		System.out.printf("Insert %d in a sorted list\n", data);
+		if(head.next == null){
+			System.out.printf("\nInsert %d in a sorted list\n", data);
+		}
+		else{
+			System.out.printf("\nInsert %d in a sorted list\n", data);
+			for(Node cur = head.next; cur != null ; cur = cur.next){
+				String comparsion = " |" + cur.data.toString() + " > " + tmp.data.toString() + " Output: " + cur.data.compareTo(tmp.data) + "| ";
+				System.out.print(comparsion);
+				if(cur.data.compareTo(tmp.data) == -1){
+					head = cur;
+					cur.next = tmp;
+					tmp.next = null;
+				}
+			}
+		}
 	}
 }// end class listlink	
