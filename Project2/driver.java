@@ -17,10 +17,23 @@ public class driver {
                 x = inf.nextInt();
                 Lint.insertsorted(x);
             }
-            System.out.print(Lint.toString());
+
+            System.out.printf("The %d inserted data are as follow:", n);
+            System.out.print(Lint.toString() + "\n");
 
             // read No. of data to search
-            m = inf.nextInt(); 
+            // m = inf.nextInt(); 
+            // for(j = 1; j <= m; j++){
+            //     // read data to search
+            //     x = inf.nextInt();
+            //     k = Lint.deleteKey(x);
+            //     if(k == 1){
+            //         System.out.print(x + " :is deleted, now list is: " + Lint.toString() + "\n");
+            //     } //complete it
+            //     else{
+            //         System.out.print(x + " Ooops is not in the list?\n");
+            //     }
+            // }
             inf.close();
         }
         catch(Exception e){

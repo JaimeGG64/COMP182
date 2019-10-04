@@ -11,13 +11,14 @@ import java.io.*;
 	* if delete operation is attempted when List is empty.
 	* if position of insert or delete is out of range.
 */
-public class listlink implements list{
+public class listlink{
 	private class Node{
 		int data; 
 		Node next;
 		Node(){next = null;}
 	}// class Node<T>
 	private Node head; //head is a pointer to head of the list
+	private Node sorted;
 	private int count = 0;  // no. of elements in the list
 	listlink(){head = null;}  // Constructor of List class
 
@@ -38,7 +39,6 @@ public class listlink implements list{
 	public void insert(int x, int p) throws invalidinsertion {
 		prt("\nInsert " + x + " at position " + p);
 		if (p < 1 || p > length()+1) throw new invalidinsertion(p);
-
 		Node tmp = new Node();
 		tmp.data = x;
 		if (p == 1){ // Insert to front of list
@@ -78,11 +78,37 @@ public class listlink implements list{
 		count --; // decrement no of list elements	
 	}
 
+	public int deleteKey(int key){
+		Node tmp = head; 
+		Node prev = null;
+		if(tmp != null && key == tmp.data){
+			head = tmp.next;
+			return 1;
+		}
+		while(tmp != null && key != tmp.data){
+			prev = tmp;
+			tmp = tmp.next;
+		}
+		if(tmp == null){
+			return -1;
+		}
+		prev.next = tmp.next;
+		return 1;
+	}
+
 	public void insertsorted(int data) {
-		Node tmp = new Node();
-		tmp.next = head;
-		tmp.data = data;
-		head = tmp;
-		System.out.printf("Insert %d in a sorted list\n", data);
+		Node insertedNode = new Node();
+		insertedNode.next = head;
+		insertedNode.data = data;
+		head = insertedNode;
+		System.out.print("{");
+		for (Node cur = head; cur != null; cur = cur.next){
+			if(cur.data != insertedNode.data){
+				System.out.print("current: " + cur.data + " " + ",inserted: " + insertedNode.data + " ");
+			}
+		}
+		System.out.print("}\n ");
+		// head = sorted;
+		// System.out.printf("Insert %d in a sorted list\n", data);
 	}
 }// end class listlink	
