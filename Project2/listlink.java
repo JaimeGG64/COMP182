@@ -97,23 +97,20 @@ public class listlink <T extends Comparable<T>> implements list<T>{
 
 	public void insertsorted(T data) {
 		Node tmp = new Node();
-		tmp.next = head;
 		tmp.data = data;
-		head = tmp;
-		if(head.next == null){
-			System.out.printf("\nInsert %d in a sorted list\n", data);
+		System.out.printf("\nInsert %d in a sorted list\n", data);
+		if(head == null || head.data.compareTo(tmp.data) >= 0){
+			tmp.next = head;
+			head = tmp;
+			return;
 		}
 		else{
-			System.out.printf("\nInsert %d in a sorted list\n", data);
-			for(Node cur = head.next; cur != null ; cur = cur.next){
-				String comparsion = " |" + cur.data.toString() + " > " + tmp.data.toString() + " Output: " + cur.data.compareTo(tmp.data) + "| ";
-				System.out.print(comparsion);
-				if(cur.data.compareTo(tmp.data) == -1){
-					head = cur;
-					cur.next = tmp;
-					tmp.next = null;
-				}
+			Node cur = head;
+			while(cur.next != null && cur.next.data.compareTo(tmp.data) == -1){
+				cur = cur.next;
 			}
+			tmp.next = cur.next;
+			cur.next = tmp;
 		}
 	}
 }// end class listlink	
