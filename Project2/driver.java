@@ -1,3 +1,5 @@
+package Project2;
+
 import java.util.Scanner;
 
 public class driver {
@@ -9,7 +11,7 @@ public class driver {
             n = inf.nextInt();
 
             // Create a List of type Integer of size n
-            listlink<Integer> Lint = new listlink<Integer>();
+            listlink<Integer> Lint = new listlink<Integer>(n);
 
             // Read n element and insert in a sorted list position randomly in the list
             for(j = 1; j <= n; j++){

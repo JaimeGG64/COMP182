@@ -1,3 +1,5 @@
+package Project2;
+
 //	listlink.java(Non-Generic)	CSUN Fall 19  COMP182-2
 
 //ADT LIST (Link list implementation & no header in JAVA
@@ -21,7 +23,10 @@ public class listlink <T extends Comparable<T>> implements list<T>{
 	private int count = 0;  // no. of elements in the list
 	listlink(){head = null;}  // Constructor of List class
 
-//************ Member functions definition   ************************
+public listlink(int n) {
+	}
+
+	//************ Member functions definition   ************************
 	public int     length() {return count;}
 	public boolean isEmpty() {return (head == null);}
 	public static void prt(String s){System.out.print(s);}

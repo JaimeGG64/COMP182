@@ -1,3 +1,5 @@
+package Project2;
+
 /*	invaliddeletion.java	*/
 public class invaliddeletion extends RuntimeException {  
   public invaliddeletion(int p) {
