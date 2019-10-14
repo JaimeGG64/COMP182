@@ -88,13 +88,16 @@ public class jaigarcia {
 	public void mergeSort(){
 		Node tmp1 = head1;
 		Node tmp2 = head2;
-		head3 = tmp1;
-		while(head3 != null){
-			// if(head3.next == null){
-			// 	head3.next = head2;
-			// }
-			System.out.print("\n - Next Data: " + head3.next.data);
-			head3 = head3.next;
+
+		//First Insertion Case
+		if(tmp1.data > tmp2.data || head3 == null){
+			head3 = tmp2;
+			Node cur = head3;
+			while(cur != null){
+				cur = cur.next;
+			}
+			cur = tmp1;
+			head3.next = cur;
 		}
 	}
 
