@@ -62,13 +62,13 @@ public class driver {
                 operandStack.push(tempchar);
             }
             else if(tempchar == ')'){
-                while((!operandStack.isEmpty() && operandStack.peek() != '(') || operandStack.peek() == ')'){
+                while(!operandStack.isEmpty() && operandStack.peek() != '('){
                     outputStack.push(operandStack.pop());
                 }
                 operandStack.pop();
             }
             else{
-                while (!operandStack.isEmpty() && checkPresedence(tempchar) >= checkPresedence(operandStack.peek())){ 
+                while (!operandStack.isEmpty() && checkPresedence(tempchar) <= checkPresedence(operandStack.peek())){ 
                     outputStack.push(operandStack.pop()); 
                 } 
                 operandStack.push(tempchar); 
@@ -77,16 +77,12 @@ public class driver {
         while(!operandStack.isEmpty()){
             outputStack.push(operandStack.pop()); 
         }
-        // System.out.println(operandStack.toString());
         infixToPostfixString = outputStack.toString().replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", "");
         return infixToPostfixString;
     }
 
     public int checkPresedence(char charToCheck){
-        if(charToCheck == '(' || charToCheck == ')'){
-            return 4;
-        }
-        else if(charToCheck == '^'){
+        if(charToCheck == '^'){
             return 3;
         }
         else if(charToCheck == '*' || charToCheck == '/'){
