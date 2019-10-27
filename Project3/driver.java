@@ -52,24 +52,44 @@ public class driver {
         char tempchar;
         Stack<Character> operandStack = new Stack<Character>();
         Stack<Character> outputStack = new Stack<Character>();
-        for(int i = 0; i < infixToPostfixString.length(); i++){
+        int lengthOfString =  infixToPostfixString.length();
+        for(int i = 0; i < lengthOfString; i++){
             tempchar = infixToPostfixString.charAt(i);
             if(Character.isLetter(tempchar)){
                 outputStack.push(tempchar);
             }
-            else{
-                while(!operandStack.empty()){
-                    if(operandStack.peek() > tempchar){
-                        outputStack.push(tempchar);
-                    }
-                    else{
-                        outputStack.push(infixToPostfixString.charAt(i+1));
-                    }
+            else if(tempchar == '('){
+                operandStack.push(tempchar);
+            }
+            else if(tempchar == ')'){
+                while((!operandStack.isEmpty() && operandStack.peek() != '(') || operandStack.peek() == ')'){
+                    outputStack.push(operandStack.pop());
                 }
+                operandStack.pop();
+            }
+            else{
+                operandStack.push(tempchar); 
             }
         }
-        infixToPostfixString = outputStack.toString();
-        return infixToPostfixString.replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", "");
+        // System.out.println(operandStack.toString());
+        infixToPostfixString = outputStack.toString().replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", "");
+        return infixToPostfixString;
+    }
+
+    public int checkPresedence(char charToCheck){
+        if(charToCheck == '(' || charToCheck == ')'){
+            return 4;
+        }
+        else if(charToCheck == '^'){
+            return 3;
+        }
+        else if(charToCheck == '*' || charToCheck == '/'){
+            return 2;
+        }
+        else if(charToCheck == '-' || charToCheck == '+'){
+            return 1;
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
