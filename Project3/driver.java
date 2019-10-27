@@ -68,8 +68,14 @@ public class driver {
                 operandStack.pop();
             }
             else{
+                while (!operandStack.isEmpty() && checkPresedence(tempchar) >= checkPresedence(operandStack.peek())){ 
+                    outputStack.push(operandStack.pop()); 
+                } 
                 operandStack.push(tempchar); 
             }
+        }// End For Loop
+        while(!operandStack.isEmpty()){
+            outputStack.push(operandStack.pop()); 
         }
         // System.out.println(operandStack.toString());
         infixToPostfixString = outputStack.toString().replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", "");
