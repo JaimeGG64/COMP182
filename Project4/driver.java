@@ -93,6 +93,31 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 public class driver {
+
+    public void addfront(int x) {
+        System.out.print("Add Front");
+    }
+
+    public void printfwd() {
+        System.out.print("Print Forward");
+    }
+
+    public int delfront() {
+        return 0;
+    }
+
+    public int addrear(int x) {
+        return 0;
+    }
+
+    public int delrear() {
+        return 0;
+    }
+
+    public void printbwd() {
+        System.out.print("hi");
+    }
+
     public static void main(String args[]) {
         driver dq = new driver(); // driver is the first 5 characters of your last name
         try {
@@ -102,21 +127,19 @@ public class driver {
             while (inf.hasNext()) {
                 // read operation type (optype):
                 /*
-                    1:add front 
-                    2:delete front 
-                    3:add rear and delete rear
-                */
-                optype = inf.nextInt();
+                 * 1:add front 2:delete front 3:add rear and delete rear
+                 */
+                int optype = inf.nextInt();
 
                 switch (optype) {
                 case 1:
-                    x = inf.nextInt(); // read x
+                    int x = inf.nextInt(); // read x
                     dq.addfront(x);
                     dq.printfwd(); // print forward dequeuer elements
                     break;
                 case 2:
-                    j = dq.delfront();// delete front
-                    if (j) {
+                    int j = dq.delfront();// delete front
+                    if (j == 1) {
                         dq.printbwd(); // print backward dequeuer elements
                     }
                     break;
@@ -127,17 +150,16 @@ public class driver {
                     break;
                 default:
                     j = dq.delrear();// delete front
-                    if (j) {
+                    if (j == 1) {
                         dq.printbwd(); // print backward dequeuer elements
                     }
                 }// end switch
-
             } // end while
 
             inf.close();// close input file
 
         } catch (Exception e) {
-            prt("\nException " + e + "\n");
+            System.out.print("\nException " + e + "\n");
         }
     }// end main method
 }
