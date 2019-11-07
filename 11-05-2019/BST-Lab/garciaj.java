@@ -66,19 +66,20 @@ public class garciaj {
 	// insert x into a BST with root t(non-recursive)
 	public void insert(int x, Node t) {
 		Node cur = t;
-		while(cur != null){
-			if(x <= cur.data){
-				cur = cur.ll;
+		while(t != null){
+			cur = t;
+			if(x <= t.data){
+				t = t.ll;
 			}
 			else{
-				cur = cur.rl;
+				t = t.rl;
 			}
 		}
-		if(x <= t.data){
-			t.ll = new Node(x);
+		if(x <= cur.data){
+			cur.ll = new Node(x);
 		}
 		else{
-			t.rl = new Node(x);
+			cur.rl = new Node(x);
 		}
 	}
 
