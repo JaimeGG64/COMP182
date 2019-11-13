@@ -1,0 +1,7 @@
+5 
+student estudiante
+book libro 
+this esto
+is es 
+a un 
+a esto libro
