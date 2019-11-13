@@ -36,29 +36,29 @@ public class driver5 {
     }
 
     // search for x in BST
-	public int search(String word) {
+	public int search(String translateToFrench) {
 		if (root == null)
 			return 0; // tree is empty
 		else{
-			return search(word, root);
+			return search(translateToFrench, root);
         }
 	}
 
-	public int search(String English, Node t) {
-		if(t == null){
+	public int search(String findFrench, Node languageTree) {
+		if(languageTree == null){
 			return 0;
 		}
-		else if(t.English.equals(English)){
-            System.out.println(t.French);
+		else if(languageTree.English.equals(findFrench)){
+            System.out.print(languageTree.French);
 			return 1;
 		}
 		// search left subtree
-		else if(t.English.compareTo(t.English) < 0){
-			return search(English, t.ll);
+		else if(languageTree.English.compareTo(findFrench) > 0){
+			return search(findFrench, languageTree.ll);
 		}
 		// search right subtree
 		else{
-			return search(English, t.rl);
+			return search(findFrench, languageTree.rl);
 		}
     }
 
@@ -87,7 +87,7 @@ public class driver5 {
                 english = inf.next();
                 // search in BST and print its corresponding French if exist.
                 if(1 == bst.search(english)){
-                    System.out.println(" ");
+                    System.out.print(" ");
                 }
             }// end while
         
