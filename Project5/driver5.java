@@ -1,6 +1,26 @@
+/*
+    Program: Binary Search Tree
+    Name: Jaime Garcia Garcia
+    Date: 11-14-2019
+    Description: Program reads a data file with a list of English and French words and. 
+    Then, it will construct a BST of the words. Finally the program will translate the sentence from English to French.
+
+    How to Run The Program:
+    1. How to Compile:
+        ```bash
+        $ javac garciaj5.java
+        ```
+
+    2. How to Execute
+        ```bash
+        $ java garciaj5 < <YourTextFile>.txt
+        ```
+*/
+
 import java.util.Scanner;
 
 public class driver5 {
+    // BST Constructor
     private class Node {
         String English = "";
         String French = "";
@@ -13,12 +33,13 @@ public class driver5 {
 		}
     }// end class Node
     private Node root;
-
     driver5(){
         root = null;
     }
-    public void insert(String english, String french){
-        root = insert(root, english, french);
+
+    // Insert English and French word to Binary Tree.
+    public void insert(String englishWord, String frenchWord){
+        root = insert(root, englishWord, frenchWord);
     }
 
     public Node insert(Node languageTree, String English, String French){
@@ -35,30 +56,31 @@ public class driver5 {
         return languageTree;
     }
 
-    // search for x in BST
-	public int search(String translateToFrench) {
+    // Recursive search Method find the french eqvalient
+	public int search(String englishToFrenchWordToFind) {
 		if (root == null)
 			return 0; // tree is empty
 		else{
-			return search(translateToFrench, root);
+			return search(englishToFrenchWordToFind, root);
         }
 	}
 
-	public int search(String findFrench, Node languageTree) {
+	public int search(String findFrenchWord, Node languageTree) {
 		if(languageTree == null){
-			return 0;
-		}
-		else if(languageTree.English.equals(findFrench)){
+			return 0; // search was unsuccesful.
+        }
+        // search was successful
+		else if(languageTree.English.equals(findFrenchWord)){
             System.out.print(languageTree.French);
 			return 1;
 		}
 		// search left subtree
-		else if(languageTree.English.compareTo(findFrench) > 0){
-			return search(findFrench, languageTree.ll);
+		else if(languageTree.English.compareTo(findFrenchWord) > 0){
+			return search(findFrenchWord, languageTree.ll);
 		}
 		// search right subtree
 		else{
-			return search(findFrench, languageTree.rl);
+			return search(findFrenchWord, languageTree.rl);
 		}
     }
 
@@ -67,8 +89,7 @@ public class driver5 {
         
         try{
             Scanner inf = new Scanner(System.in);  
-            String english = "";
-            String french = ""; 
+            String english, french; 
             int n;
             // read no. of words
             n = inf.nextInt();
@@ -85,7 +106,8 @@ public class driver5 {
             while(inf.hasNext()){
                 // read next English word
                 english = inf.next();
-                // search in BST and print its corresponding French if exist.
+
+                // search in BST and print its corresponding French if it exist.
                 if(1 == bst.search(english)){
                     System.out.print(" ");
                 }
