@@ -1,91 +1,121 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-public class garciaL2{
+public class garciaL2 {
     // Node Constructor
-    private class Node{
+    private class Node {
         int data, bf;
         Node ll, rl;
-        Node(int x){
+
+        Node(int x) {
             data = x;
             rl = ll = null;
             bf = 0;
         }
     }
+
     private Node root;
-    garciaL2(){
+
+    garciaL2() {
         root = null;
     }
 
     // Insert
-    public void insert(int x){
-        root = insert(root, x);
-    }
-    public Node insert(Node t, int x){
-        if(t == null){
-            t = new Node(x);
-            return t;
+    public void insert(int x) {
+        if (root == null) {
+            root = new Node(x);
+        } else {
+            insert(root, x);
         }
-        else if(t.data > x) {
-            t.ll = insert(t.ll, x);
-        }
-        else{
-            t.rl = insert(t.rl, x);
-        }
-        return t;
     }
 
-    //Balance Factor
-    private void balancefactor(Node t){
-        if(t.ll == null && t.rl == null){
-            t.bf = 0;
-        }
-        else{
-            t.bf = Math.abs(height(t.ll) - height(t.rl));
-            System.out.print("Balance Factor: " + t.bf + "\n");
-        }
-    }
-    private int height(Node t){
-        if(t != null){
-            if(t.ll == null && t.rl == null){
-                return 0;
-            }
-            int leftHeight = height(t.ll);
-            int rightHeight = height(t.rl);
-            if(leftHeight > rightHeight){
-                return leftHeight + 1;
-            }
-            else{
-                return rightHeight + 1;
+    public void insert(Node t, int x) {
+        Node cur = t;
+        while (t != null) {
+            cur = t;
+            if (x <= t.data) {
+                t = t.ll;
+            } else {
+                t = t.rl;
             }
         }
-        return 0;
+        if (x <= cur.data) {
+            cur.ll = new Node(x);
+        } else {
+            cur.rl = new Node(x);
+        }
     }
 
-    //Print inorder
-    void inorder(){inorder(root);} 
-    void inorder(Node t) { 
-        if (t == null){
-            return; 
+
+    // Balance Factor
+    private void balancefactor() {
+        if(root == null){
+            return;
         }
-        inorder(t.ll); 
-        System.out.print(t.data + " "); 
+        else{
+            balancefactor(root);
+        }
+    }
+
+    private void balancefactor(Node t) {
+        if (t == null) 
+            return;
+        int leftHeight = height(t.ll);
+        int rightHeight = height(t.rl);
+        t.bf = Math.abs(leftHeight - rightHeight);
+        balancefactor(t.ll);
+        balancefactor(t.rl);
+    }
+
+    private int height() {
+        if (root == null) {
+            return 0;
+        } else {
+            return height(root);
+        }
+    }
+
+    private int height(Node t) {
+        if (t == null || (t.ll == null && t.rl == null))
+            return 0;
+        int leftHeight = height(t.ll);
+        int rightHeight = height(t.rl);
+        if (leftHeight > rightHeight) {
+            return leftHeight + 1;
+        } else {
+            return rightHeight + 1;
+        }
+    }
+
+    // Print inorder
+    void inorder() {
+        inorder(root);
+    }
+
+    void inorder(Node t) {
+        if (t == null) {
+            return;
+        }
+        inorder(t.ll);
+        System.out.print(t.data + "(" + t.bf + ")" ) ;
         inorder(t.rl);
-    } 
+    }
 
-    //Print Print Median element
+    // Print Median element
 
     public static void main(String[] args) {
         garciaL2 bst = new garciaL2();
-        try{
+        try {
             Scanner inf = new Scanner(System.in);
-            while(inf.hasNext()){
+            while (inf.hasNext()) {
                 int n = inf.nextInt();
                 bst.insert(n);
             }
+            System.out.print("BST height: " + bst.height() + "\n");
+            bst.balancefactor();
             bst.inorder();
             inf.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.print("Error");
         }
     }
