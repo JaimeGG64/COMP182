@@ -102,13 +102,19 @@ public class garciaL2 {
     }
 
     // Print Median element
+    private int index;
+
     void getMedianElement(){
         int numOfNodes = getNumOfNodes(root);
         int[] arrayOfNodes = new int[numOfNodes];
-        System.out.print("\nNumber Of Nodes: " + numOfNodes + "\n");
-        insertNodeToArray(root, 0, arrayOfNodes);
-        for(int i = 0; i < arrayOfNodes.length; i++){
-            System.out.print(arrayOfNodes[i] + " ");
+        insertNodeToArray(root, arrayOfNodes);
+        int getMidIndex = numOfNodes/2;
+        if(numOfNodes % 2 == 0){
+            int getAverage = (arrayOfNodes[getMidIndex] + arrayOfNodes[getMidIndex++])/2;
+            System.out.print("\nMedian Element " + getAverage);
+        }
+        else{
+            System.out.print("\nMedian Element " + arrayOfNodes[getMidIndex]);
         }
     }
 
@@ -121,13 +127,13 @@ public class garciaL2 {
         return rightNodes + leftNode + 1;  
     }
 
-    public void insertNodeToArray(Node tree, int index, int[] array){
+    public void insertNodeToArray(Node tree, int[] array){
         if (tree == null) {
             return;
         }
-        insertNodeToArray(tree.ll,  2*index+1, array);
-        array[index] = tree.data;
-        insertNodeToArray(tree.rl,  2*index+2, array);
+        insertNodeToArray(tree.ll, array);
+        array[index++] = tree.data;
+        insertNodeToArray(tree.rl, array);
     }
 
     public static void main(String[] args) {
