@@ -109,9 +109,9 @@ public class garciaL2 {
         int[] arrayOfNodes = new int[numOfNodes];
         insertNodeToArray(root, arrayOfNodes);
         int getMidIndex = numOfNodes/2;
-        if(numOfNodes % 2 == 0){
-            int getAverage = (arrayOfNodes[getMidIndex] + arrayOfNodes[getMidIndex++])/2;
-            System.out.print("\nMedian Element " + getAverage);
+        if((numOfNodes % 2) == 0){
+            int getMediamAverage = (arrayOfNodes[getMidIndex++] + arrayOfNodes[getMidIndex-2])/2;
+            System.out.print("\nMedian Element " + getMediamAverage);
         }
         else{
             System.out.print("\nMedian Element " + arrayOfNodes[getMidIndex]);
