@@ -102,6 +102,33 @@ public class garciaL2 {
     }
 
     // Print Median element
+    void getMedianElement(){
+        int numOfNodes = getNumOfNodes(root);
+        int[] arrayOfNodes = new int[numOfNodes];
+        System.out.print("\nNumber Of Nodes: " + numOfNodes + "\n");
+        insertNodeToArray(root, 0, arrayOfNodes);
+        for(int i = 0; i < arrayOfNodes.length; i++){
+            System.out.print(arrayOfNodes[i] + " ");
+        }
+    }
+
+    int getNumOfNodes(Node tree)  {  
+        if (tree == null){
+            return 0;
+        }
+        int leftNode = getNumOfNodes(tree.ll);
+        int rightNodes = getNumOfNodes(tree.rl);
+        return rightNodes + leftNode + 1;  
+    }
+
+    public void insertNodeToArray(Node tree, int index, int[] array){
+        if (tree == null) {
+            return;
+        }
+        insertNodeToArray(tree.ll,  2*index+1, array);
+        array[index] = tree.data;
+        insertNodeToArray(tree.rl,  2*index+2, array);
+    }
 
     public static void main(String[] args) {
         garciaL2 bst = new garciaL2();
@@ -114,9 +141,11 @@ public class garciaL2 {
             System.out.print("BST height: " + bst.height() + "\n");
             bst.balancefactor();
             bst.inorder();
+            bst.getMedianElement();
             inf.close();
         } catch (Exception e) {
-            System.out.print("Error");
+
+            System.out.print("Error" + e);
         }
     }
 }
